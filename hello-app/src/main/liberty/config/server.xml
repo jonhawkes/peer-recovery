@@ -1,0 +1,33 @@
+<server description="Sample Liberty server">
+
+  <featureManager>
+    <feature>microprofile-1.2</feature>
+    <feature>xaflow-1.0</feature>
+  </featureManager>
+
+  <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
+      id="defaultHttpEndpoint" host="*" />
+
+  <!-- Automatically expand WAR files and EAR files -->
+  <applicationManager autoExpand="true"/>
+
+  <webApplication name="peer-recovery-test" location="${app.location}"/>
+        
+  <transaction
+    transactionLogDirectory="${wlp.user.dir}/shared/${env.HOSTNAME}-${wlp.server.name}"
+    recoverOnStartup="true"
+    waitForRecovery="false"
+    heuristicRetryInterval="10"
+    recoveryIdentity="${env.HOSTNAME}-${wlp.server.name}"
+    recoveryGroup="shared/peer-group-one"
+  />
+
+  <logging
+    traceSpecification="Transaction=all=enabled"
+    traceFileName="trace.log"
+    maxFileSize="2000"
+    maxFiles="20"
+    traceFormat="BASIC"
+  />
+
+</server>
