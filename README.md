@@ -1,5 +1,5 @@
 ## Peer Recovery Test Application
-This project contains tests for Liberty peer recovery in ICP.`
+This project contains tests for Liberty peer recovery in ICP.
 
 ### Project Contents
 The project comprises an application as a  docker container deployed into a Kubernetes cluster.
